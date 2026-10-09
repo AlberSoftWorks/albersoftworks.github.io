@@ -33,6 +33,54 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+    .hero .hero-content { max-width: 1000px; }
+    .hero .hero-eyebrow { display: inline-block; margin: 0 0 1rem; color: var(--accent-color); font-size: .82rem; font-weight: 700; letter-spacing: .16em; }
+    .hero .hero-role { margin-top: .6rem; }
+    .hero .hero-summary { max-width: 690px; margin-top: 1.2rem; font-size: 1.08rem; line-height: 1.8; color: color-mix(in srgb, var(--default-color), transparent 12%); }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin-top: 1.7rem; }
+    .btn-hero { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 46px; padding: .75rem 1.15rem; border: 1px solid var(--accent-color); border-radius: 999px; font: inherit; font-size: .92rem; font-weight: 600; text-decoration: none; cursor: pointer; transition: transform .2s ease, background-color .2s ease, color .2s ease; }
+    .btn-hero:hover { transform: translateY(-2px); }
+    .btn-hero-primary { color: var(--contrast-color); background: var(--accent-color); }
+    .btn-hero-primary:hover { color: var(--contrast-color); filter: brightness(1.08); }
+    .btn-hero-secondary, .btn-hero-print { color: var(--default-color); background: transparent; }
+    .btn-hero-secondary:hover, .btn-hero-print:hover { color: var(--contrast-color); background: var(--accent-color); }
+    .featured-projects { margin: 0 0 3.5rem; }
+    .featured-heading { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 1.25rem; }
+    .featured-kicker { color: var(--accent-color); font-size: .76rem; font-weight: 700; letter-spacing: .16em; }
+    .featured-heading h3 { margin: .35rem 0 .5rem; font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 700; color: var(--heading-color); }
+    .featured-heading p { max-width: 700px; margin: 0; line-height: 1.7; color: color-mix(in srgb, var(--default-color), transparent 25%); }
+    .featured-card { height: 100%; overflow: hidden; border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%); border-radius: 14px; background: var(--surface-color); box-shadow: 0 8px 26px rgba(4, 11, 20, .07); transition: transform .25s ease, box-shadow .25s ease; }
+    .featured-card:hover { transform: translateY(-5px); box-shadow: 0 16px 34px rgba(4, 11, 20, .13); }
+    .featured-image { position: relative; display: block; overflow: hidden; background: color-mix(in srgb, var(--accent-color), transparent 92%); }
+    .featured-image img { display: block; width: 100%; height: 220px; object-fit: cover; transition: transform .45s ease; }
+    .featured-card:hover .featured-image img { transform: scale(1.04); }
+    .featured-number { position: absolute; right: 14px; bottom: 12px; padding: .25rem .55rem; border: 1px solid rgba(255,255,255,.4); border-radius: 6px; color: #fff; background: rgba(4,11,20,.72); font-size: .78rem; font-weight: 700; }
+    .featured-copy { padding: 1.2rem 1.25rem 1.35rem; }
+    .featured-category { color: var(--accent-color); font-size: .74rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .featured-copy h4 { margin: .55rem 0; color: var(--heading-color); font-size: 1.1rem; line-height: 1.45; font-weight: 700; }
+    .featured-copy p { margin: 0 0 1rem; font-size: .92rem; line-height: 1.65; color: color-mix(in srgb, var(--default-color), transparent 25%); }
+    .featured-link { display: inline-flex; align-items: center; gap: .45rem; color: var(--accent-color); font-weight: 700; text-decoration: none; }
+    .featured-link:hover { text-decoration: underline; }
+    @media (max-width: 575px) { .hero-actions { align-items: stretch; flex-direction: column; } .btn-hero { width: 100%; } .featured-image img { height: 200px; } }
+    @media print {
+      @page { size: A4; margin: 14mm; }
+      body, .main { color: #222 !important; background: #fff !important; }
+      #header, .hero img, .hero-actions, .portfolio-filters, .featured-link, .footer, .scroll-top, .preloader { display: none !important; }
+      .main { margin: 0 !important; padding: 0 !important; }
+      .hero { min-height: auto !important; padding: 0 0 12mm !important; color: #222 !important; background: #fff !important; }
+      .hero .hero-summary, .hero .hero-role { color: #222 !important; }
+      .hero h2, .section-title h2, .resume h2, .resume h3 { color: #111 !important; }
+      section, .resume-item, .about, .skills { break-inside: avoid; }
+      .portfolio .portfolio-content .portfolio-info { position: static !important; opacity: 1 !important; color: #222 !important; background: #fff !important; }
+      .portfolio .portfolio-content .portfolio-info p { color: #333 !important; }
+      a { color: #222 !important; text-decoration: none !important; }
+      .featured-projects { margin-bottom: 8mm; }
+      .featured-card { box-shadow: none !important; break-inside: avoid; }
+      .featured-image img { height: 35mm; }
+    }
+  </style>
+
 </head>
 <!-- ============================================= FINAL DE HEAD ============================================= -->
 
@@ -68,10 +116,7 @@
         <li><a href="#curriculum"><i class="bi bi-file-earmark-text navicon"></i>Currículum</a></li>
         <li><a href="#portfolio"><i class="bi bi-images navicon"></i>Portfolio</a></li>
         <li><a href="#contacto"><i class="bi bi-envelope navicon"></i>Contacto</a></li>
-        <div>
-          <!-- LOGO ADH en en el centro que ocupe lo ancho de la barra de naveación en la parte baja -->
-          <img src="assets/img/logo.png" alt="Logo ADH" style="width: 60%; height: auto; display: block; margin: 0 auto;">
-        </div>
+        <li class="nav-brand" aria-hidden="true"><img src="assets/img/logo.png" alt="" loading="lazy" width="180" height="180"></li>
       </ul>
     </nav>
 
@@ -81,14 +126,18 @@
 
     <!-- ============================================= SECCIÓN PRINCIPAL ============================================= -->
     <section id="inicio" class="hero section dark-background">
-
-      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in" class="">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in" fetchpriority="high">
+      <div class="container hero-content" data-aos="fade-up" data-aos-delay="100">
+        <p class="hero-eyebrow">PORTFOLIO PROFESIONAL · LANZAROTE</p>
         <h2>Alberto Delgado Hernández</h2>
-        <p>Soy <span class="typed" data-typed-items="Técnico Informático, Agente Digitalizador, Administrador de Sistemas, Gestor de Bases de Datos, Programador"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+        <p class="hero-role">Soy <span class="typed" data-typed-items="Técnico Informático, Agente Digitalizador, Administrador de Sistemas, Gestor de Bases de Datos, Programador"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+        <p class="hero-summary">Desarrollo web, sistemas informáticos y soluciones digitales para ayudar a empresas y profesionales a mejorar su presencia online y sus procesos tecnológicos.</p>
+        <div class="hero-actions">
+          <a class="btn-hero btn-hero-primary" href="#portfolio"><i class="bi bi-grid-3x3-gap"></i> Explorar proyectos</a>
+          <a class="btn-hero btn-hero-secondary" href="#contacto"><i class="bi bi-envelope"></i> Contactar</a>
+          <button class="btn-hero btn-hero-print" type="button" onclick="window.print()" aria-label="Imprimir o guardar el currículum como PDF"><i class="bi bi-file-earmark-pdf"></i> Guardar CV en PDF</button>
+        </div>
       </div>
-
     </section>
     <!-- ============================================= FINAL DE SECCIÓN PRINCIPAL ============================================= -->
 
@@ -414,6 +463,24 @@
       </div><!-- End Section Title -->
 
       <div class="container">
+
+        <div class="featured-projects" data-aos="fade-up">
+          <div class="featured-heading"><div><span class="featured-kicker">SELECCIÓN</span><h3>Proyectos destacados</h3><p>Una muestra de trabajos recientes que representan mi experiencia en desarrollo web y soluciones digitales.</p></div></div>
+          <div class="row gy-4">
+            <div class="col-lg-4 col-md-6"><article class="featured-card">
+              <a class="featured-image" href="https://proyectoscel.com/" target="_blank" rel="noopener noreferrer" aria-label="Visitar la web de Confederación Empresarial de Lanzarote"><img src="assets/img/portfolio/proyectosCel.png" alt="Vista previa del proyecto de Confederación Empresarial de Lanzarote" loading="lazy" decoding="async" width="600" height="400"><span class="featured-number">01</span></a>
+              <div class="featured-copy"><span class="featured-category">WordPress · Proyecto corporativo</span><h4>Confederación Empresarial de Lanzarote</h4><p>Presencia digital para una organización empresarial.</p><a href="https://proyectoscel.com/" target="_blank" rel="noopener noreferrer" class="featured-link">Visitar proyecto <i class="bi bi-arrow-up-right"></i></a></div>
+            </article></div>
+            <div class="col-lg-4 col-md-6"><article class="featured-card">
+              <a class="featured-image" href="https://localseolanzarote.es/" target="_blank" rel="noopener noreferrer" aria-label="Visitar la web de Local SEO Lanzarote"><img src="assets/img/portfolio/localSeoLanzarote.png" alt="Vista previa de Local SEO Lanzarote" loading="lazy" decoding="async" width="600" height="400"><span class="featured-number">02</span></a>
+              <div class="featured-copy"><span class="featured-category">Web · SEO local</span><h4>Local SEO Lanzarote</h4><p>Web enfocada a visibilidad local y captación de clientes.</p><a href="https://localseolanzarote.es/" target="_blank" rel="noopener noreferrer" class="featured-link">Visitar proyecto <i class="bi bi-arrow-up-right"></i></a></div>
+            </article></div>
+            <div class="col-lg-4 col-md-6"><article class="featured-card">
+              <a class="featured-image" href="https://sites.google.com/view/musslanzarote" target="_blank" rel="noopener noreferrer" aria-label="Visitar la web de Muss Lanzarote"><img src="assets/img/portfolio/mussLanzarote.png" alt="Vista previa de Muss Lanzarote" loading="lazy" decoding="async" width="600" height="400"><span class="featured-number">03</span></a>
+              <div class="featured-copy"><span class="featured-category">Google Sites · Web comercial</span><h4>Muss Lanzarote</h4><p>Diseño de una presencia web clara para un negocio local.</p><a href="https://sites.google.com/view/musslanzarote" target="_blank" rel="noopener noreferrer" class="featured-link">Visitar proyecto <i class="bi bi-arrow-up-right"></i></a></div>
+            </article></div>
+          </div>
+        </div>
 
         <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
